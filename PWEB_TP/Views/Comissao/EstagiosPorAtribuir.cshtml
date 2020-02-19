@@ -1,0 +1,76 @@
+﻿@model IEnumerable<PWEB_TP.Models.Estagio>
+
+@{
+    ViewBag.Title = "Estagios Por Atribuir";
+}
+
+<h2>Estágios Por Atribuir</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Enquandramento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Objetivos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CondicoesDeAcesso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Local)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataDeCriacao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contacto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Observacoes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User_Id)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Enquandramento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Objetivos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CondicoesDeAcesso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Local)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataDeCriacao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contacto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Observacoes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
+        </td>
+        <td>
+            <button onclick="location.href='@Url.Action("CandidaturasPorAtribuir", "Comissao", new { id = item.EstagioId })'" class="btn btn-sm btn-primary">Escolher Candidatura</button>
+        </td>
+    </tr>
+}
+
+</table>

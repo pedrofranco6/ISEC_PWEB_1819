@@ -1,0 +1,59 @@
+﻿@model IEnumerable<PWEB_TP.Models.Candidatura>
+
+@{
+    ViewBag.Title = "CandidaturasPorAtribuir";
+}
+
+<h2>CandidaturasPorAtribuir</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Disciplinas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Importancia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Orientador_FK)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstagioId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Observacoes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User_Id)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Disciplinas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Importancia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Orientador_FK)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstagioId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Observacoes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplicationUser.UserName)
+        </td>
+        <td>
+            <button onclick="location.href='@Url.Action("AtribuirCandidatura", "Comissao", new { id = item.CandidaturaId })'" class="btn btn-sm btn-primary">Atribuir Candidatura</button>
+
+        </td>
+    </tr>
+}
+
+</table>

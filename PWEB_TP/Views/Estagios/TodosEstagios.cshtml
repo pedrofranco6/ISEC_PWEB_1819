@@ -1,0 +1,72 @@
+﻿@model IEnumerable<PWEB_TP.Models.Estagio>
+
+@{
+    ViewBag.Title = "TodosEstagios";
+}
+
+<h2>Todos os Estágios</h2>
+
+@using (Html.BeginForm("TodosEstagios", "Estagios", FormMethod.Get))
+{
+    <div class="col-md-4">
+        <b style="padding-right:10px">Procura rápida:</b>
+        @Html.RadioButton("option", "Regiao", new { @checked = true }) <text>Região</text>
+        @Html.RadioButton("option", "Ramo") <text> Ramo </text>
+        @Html.RadioButton("option", "Contactos") <text> Contactos </text>
+        @Html.TextBox("search", null, new { @class = "form-control" })
+        <input type="submit" name="submit" style="margin-top:5px;" class="btn btn-default" value="Pesquisar" />
+    </div>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ramo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Enquandramento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Objetivos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CondicoesDeAcesso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Local)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contacto)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ramo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Enquandramento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Objetivos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CondicoesDeAcesso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Local)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contacto)
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<PWEB_TP.Models.Candidatura>
+
+@{
+    ViewBag.Title = "Enviar para Entrevistas";
+}
+
+<h2>Enviar para entrevistas</h2>
+
+@using (Html.BeginForm("EnviarParaEntrevista", "Comissao"))
+{
+    @Html.AntiForgeryToken()
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Estagio.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ramo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Disciplinas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Importancia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User_Id)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estagio.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ramo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Disciplinas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Importancia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
+            </td>
+            <td>
+                <button formaction='@Url.Action("EnviarParaEntrevista", "Comissao", new { id = item.CandidaturaId })' class="btn btn-sm btn-primary">Enviar para Entrevista</button>
+            
+            </td>
+        </tr>
+    }
+        
+</table>
+}

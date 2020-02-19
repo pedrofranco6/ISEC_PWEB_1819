@@ -1,0 +1,50 @@
+﻿@model PWEB_TP.Models.Candidatura
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Candidatura</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Estagio.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estagio.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ramo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ramo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Disciplinas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Disciplinas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Importancia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Importancia)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CandidaturaId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

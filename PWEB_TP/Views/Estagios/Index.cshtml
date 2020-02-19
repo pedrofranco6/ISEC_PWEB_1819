@@ -1,0 +1,79 @@
+﻿@model IEnumerable<PWEB_TP.Models.Estagio>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Teus Estágios</h2>
+
+<p style="margin-top:20px">
+    <button onclick="location.href='@Url.Action("Create", "Estagios")'" class="btn btn-sm btn-primary">Adicionar Novo Estágio</button>
+
+</p>
+<table class="table table-bordered table-responsive text-center">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ramo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Enquandramento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Objetivos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CondicoesDeAcesso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Local)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th>
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ramo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Enquandramento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Objetivos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CondicoesDeAcesso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Local)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+        <td>
+            @if (Request.IsAuthenticated && (User.IsInRole("Administrador")))
+            {
+            <button onclick="location.href='@Url.Action("Edit", "Estagios", new { id = item.EstagioId })'" class="btn btn-sm btn-primary">Editar</button>
+            <button onclick="location.href='@Url.Action("Details", "Estagios", new { id = item.EstagioId })'" class="btn btn-sm btn-primary">Detalhes</button>
+            <button onclick="location.href='@Url.Action("Delete", "Estagios", new { id = item.EstagioId })'" class="btn btn-sm btn-primary">Remover</button>
+            }
+
+            <button onclick="location.href='@Url.Action("CandidaturasDoEstagio", "Estagios", new { id = item.EstagioId })'" class="btn btn-sm btn-primary">Candidaturas</button>
+            @if (item.Estado == PWEB_TP.Models.Estado.Atribuido)
+            {
+                <button onclick="location.href='@Url.Action("FinalizarEstagio", "Estagios", new { id = item.EstagioId })'" class="btn btn-sm btn-primary">Finalizar Estágio</button>
+            }
+    </tr>
+}
+
+</table>

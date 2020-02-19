@@ -1,0 +1,53 @@
+﻿@model IEnumerable<PWEB_TP.Models.Candidatura>
+
+@{
+    ViewBag.Title = "Candidaturas";
+}
+
+<h2>Candidaturas</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Estagio.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ramo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Disciplinas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicationUser.UserName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estagio.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ramo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Disciplinas)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.UserName)
+            </td>
+            <td>
+                @if (Request.IsAuthenticated && (User.IsInRole("Administrador")))
+                {
+                    <button onclick="location.href='@Url.Action("Edit", "Candidaturas", new { id = item.CandidaturaId })'" class="btn btn-sm btn-primary">Editar</button>
+                    <button onclick="location.href='@Url.Action("Details", "Candidaturas", new { id = item.CandidaturaId })'" class="btn btn-sm btn-primary">Detalhes</button>
+                    <button onclick="location.href='@Url.Action("Delete", "Candidaturas", new { id = item.CandidaturaId })'" class="btn btn-sm btn-primary">Remover</button>
+                }
+            </td>
+        </tr>
+    }
+
+</table>

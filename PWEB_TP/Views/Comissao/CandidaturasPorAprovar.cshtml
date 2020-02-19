@@ -1,0 +1,53 @@
+﻿@model IEnumerable<PWEB_TP.Models.Candidatura>
+
+@{
+    ViewBag.Title = "Aprovar Candidaturas dos Alunos";
+}
+
+<h2>Aprovar Candidaturas dos Alunos</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Estagio.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ramo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Disciplinas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Importancia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User_Id)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estagio.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ramo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Disciplinas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Importancia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
+        </td>
+        <td>
+            <button onclick="location.href='@Url.Action("AvaliarCandidatura", "Comissao", new { id = item.CandidaturaId })'" class="btn btn-sm btn-primary">Avaliar Candidatura</button>
+        </td>
+    </tr>
+}
+
+</table>

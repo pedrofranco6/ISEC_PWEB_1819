@@ -1,0 +1,117 @@
+﻿@model IEnumerable<PWEB_TP.Models.Estagio>
+
+@{
+    ViewBag.Title = "EstagiosDefesasEConcluir";
+}
+
+<h2>Estagios Defesas E Concluir</h2>
+
+
+<table class="table">
+
+
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Enquandramento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Objetivos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CondicoesDeAcesso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Local)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataDeCriacao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contacto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Observacoes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AvaliacaoED)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AlunoId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AvaliacaoA)
+        </th>
+        <th>
+            @Html.Raw("Docente/Empresa")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataDaDefesa)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Enquandramento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Objetivos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CondicoesDeAcesso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Local)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataDeCriacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contacto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Observacoes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AvaliacaoED)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Aluno.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AvaliacaoA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataDaDefesa)
+            </td>
+            <td>
+                @using (Html.BeginForm("EstagiosDefesasEConcluir", "Comissao"))
+                {
+                @Html.AntiForgeryToken()
+                if (item.DataDaDefesa != null)
+                {
+                    <button value="Aprovado" name="SubmitButton" formaction='@Url.Action("EstagiosDefesasEConcluir", "Comissao", new { id = item.EstagioId })' class="btn btn-sm btn-primary">Finalizar Estágio</button>
+                }
+                }
+               @if (item.DataDaDefesa == null)
+               {
+                    <button onclick="location.href='@Url.Action("EscolherDataDefesaEstagio", "Comissao", new { id = item.EstagioId })'" class="btn btn-sm btn-primary">Escolher Defesa</button>
+               }
+            </td>
+        </tr>
+        }
+    
+
+</table>

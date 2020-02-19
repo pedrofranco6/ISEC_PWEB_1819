@@ -1,0 +1,49 @@
+﻿@model IEnumerable<PWEB_TP.Models.Mensagem>
+
+@{
+    ViewBag.Title = "Recebidas";
+}
+
+<h2>Recebidas</h2>
+
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Conteudo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataDeCriacao)
+        </th>
+        <th>
+            @Html.Raw("Mensagem de")
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Titulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Conteudo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataDeCriacao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Enviado.UserName)
+        </td>
+
+        <td>
+            <button onclick="location.href='@Url.Action("Create", "Mensagens", new { mail = item.Enviado.Email})'" class="btn btn-sm btn-primary">Enviar Mensagem</button>
+        </td>
+    </tr>
+}
+
+</table>

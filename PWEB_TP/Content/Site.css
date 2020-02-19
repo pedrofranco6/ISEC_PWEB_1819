@@ -1,0 +1,54 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+
+
+
+table tr th {
+    vertical-align: middle !important;
+    font-weight: 600 !important;
+    padding: 8px !important;
+    background: white !important;
+    font-family: "Open Sans", sans-serif !important;
+    border: 1px solid #e7ecf1 !important;
+    word-wrap: break-word;
+    height: 28px !important;
+    text-align: center !important;
+}
+table tr td {
+    text-align: center;
+}
+table tr:nth-child(even) {
+    background: white !important;
+    height: 28px !important;
+}
+
+table tr:nth-child(odd) {
+    background: #c4fffd !important;
+    height: 28px !important;
+}
+
+table tr.ui-state-highlight {
+    background-color: #186ba0 !important;
+}
+
+h2 {
+    padding-bottom:10px;
+    border-bottom:solid #b1b1b1 1px;
+}

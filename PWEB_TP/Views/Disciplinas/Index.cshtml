@@ -1,0 +1,39 @@
+﻿@model IEnumerable<PWEB_TP.Models.Disciplina>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Disciplinas</h2>
+
+<p style="margin-top:20px">
+    <button onclick="location.href='@Url.Action("Create", "Disciplinas")'" class="btn btn-sm btn-primary">Adicionar Nova Disciplina</button>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ramo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ramo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.DisciplinaId }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.DisciplinaId }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.DisciplinaId })
+        </td>
+    </tr>
+}
+
+</table>

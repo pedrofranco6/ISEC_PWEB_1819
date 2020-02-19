@@ -1,0 +1,66 @@
+﻿@model PWEB_TP.Models.CreateCandidaturaViewModel
+
+@{
+    ViewBag.Title = "Criar Candidatura a Estágio";
+}
+
+<h2>Criar Candidatura a Estágio</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Candidatura</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Candidatura.Ramo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.Candidatura.Ramo, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Candidatura.Ramo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Candidatura.EstagioId, "EstagioId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.Candidatura.EstagioId, new SelectList(ViewBag.EstagioId, "Value", "Text"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Candidatura.EstagioId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-12">
+            @Html.Label("Disciplinas", new { @class = "control-label col-md-12" })
+        </div>
+@for (int i = 0; i < Model.Disciplinas.Count; i++)
+{
+        <div class="form-group">
+            @Html.Label(Model.Disciplinas[i].Nome,  new { @class = "control-label col-md-2" })
+            @Html.HiddenFor(model => model.Disciplinas[i].Nome)
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Disciplinas[i].Classificacao, new SelectList(ViewBag.Classificacao, "Value", "Text"), new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(model => model.Disciplinas[i].Classificacao, "", new { @class = "text-danger" })
+            </div>
+        </div>
+}
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

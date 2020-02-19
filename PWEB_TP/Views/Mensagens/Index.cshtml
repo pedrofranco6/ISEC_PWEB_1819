@@ -1,0 +1,18 @@
+﻿<div>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist" style="margin-top:30px">
+        <li role="presentation" class="active"><a href="#first" aria-controls="first" role="tab" data-toggle="tab">Recebidas</a></li>
+        <li role="presentation"><a href="#second" aria-controls="second" role="tab" data-toggle="tab">Enviadas</a></li>
+
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="first">
+            @Html.Action("Recebidas", "Mensagens")
+        </div>
+        <div role="tabpanel" class="tab-pane" id="second">
+            @Html.Action("Enviadas", "Mensagens")
+        </div>
+    </div>
+</div>

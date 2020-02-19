@@ -1,0 +1,33 @@
+﻿@model PWEB_TP.Models.ProfileViewModel
+
+@{
+    ViewBag.Title = "Perfil";
+}
+
+<h2>Perfil</h2>
+
+<div>
+    <h4>Perfil do Utilizador</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+    </dl>
+    <button onclick="location.href='@Url.Action("Create", "Mensagens", new { mail = Model.Email})'" class="btn btn-sm btn-primary">Enviar Mensagem</button>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

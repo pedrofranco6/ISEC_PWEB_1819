@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Estágios Deis</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Estágios @Deis", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Estágios", "TodosEstagios", "Estagios")</li>
+                    <li>@Html.ActionLink("Candidaturas", "Index", "Candidaturas")</li>
+
+                    @if (Request.IsAuthenticated && (User.IsInRole("Docente") || User.IsInRole("Empresa")))
+                    {
+                        <li>@Html.ActionLink("Meus Estágios", "Index", "Estagios")</li>
+                    }
+                    @if (Request.IsAuthenticated && (User.IsInRole("Aluno")))
+                    {
+                        <li>@Html.ActionLink("Minhas Candidaturas", "MinhasCandidaturas", "Candidaturas")</li>
+                    }
+                    @if (Request.IsAuthenticated && (User.IsInRole("ComissaoEstagios")))
+                    {
+                        <li>@Html.ActionLink("Comissão", "Index", "Comissao")</li>
+                    }
+                    @if (Request.IsAuthenticated && (User.IsInRole("Administrador"))) 
+                    {
+                        <li>@Html.ActionLink("Escolher Comissão", "ComissaoDeEstagios", "Adminstracao")</li>
+                        <li>@Html.ActionLink("Escolher Disciplinas", "Index", "Disciplinas")</li>
+                    }
+                    <!--@if (Request.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Caixa de Correio", "Index", "Mensagens")</li>
+                    }-->
+
+                    @if (Request.IsAuthenticated && (User.IsInRole("Docente")))
+                    {
+                        <li>@Html.ActionLink("Lista Orientandos", "ListaOrientandos", "Estagios")</li>
+                    }
+
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

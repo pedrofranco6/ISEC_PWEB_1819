@@ -1,0 +1,112 @@
+﻿@model PWEB_TP.Models.Estagio
+
+@{
+    ViewBag.Title = "AvaliarEstagio";
+}
+
+<h2>AvaliarEstagio</h2>
+@using (Html.BeginForm("AvaliarEstagio", "Comissao"))
+{
+    @Html.AntiForgeryToken()
+<div>
+    <h4>Estagio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ramo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ramo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Enquandramento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Enquandramento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Objetivos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Objetivos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CondicoesDeAcesso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CondicoesDeAcesso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Local)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Local)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataDeCriacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataDeCriacao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contacto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contacto)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.User_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUser.UserName)
+        </dd>
+
+    </dl>
+</div>
+    @Html.HiddenFor(model => model.Nome)
+    @Html.HiddenFor(model => model.Ramo)
+    @Html.HiddenFor(model => model.Enquandramento)
+    @Html.HiddenFor(model => model.Objetivos)
+    @Html.HiddenFor(model => model.CondicoesDeAcesso)
+    @Html.HiddenFor(model => model.Local)
+    @Html.HiddenFor(model => model.Contacto)
+    <div class="form-group" style="border-top:solid 1px #808080; padding-top:15px">
+        @Html.LabelFor(model => model.Observacoes, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Observacoes, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Observacoes, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <hr />
+    <hr />
+    <hr />
+    <p class="text-center">
+        <button value="Aprovado" name="SubmitButton" onclick="location.href='@Url.Action("AvaliarEstagio", "Comissao", new { id = Model.EstagioId })'" class="btn btn-sm btn-success">Aprovar</button>
+        <button value="Rejeitado" name="SubmitButton" onclick="location.href='@Url.Action("AvaliarEstagio", "Comissao", new { id = Model.EstagioId })'" class="btn btn-sm btn-danger">Rejeitar</button>
+    </p>
+<p>
+    @Html.ActionLink("Voltar atrás", "Index")
+</p>
+}

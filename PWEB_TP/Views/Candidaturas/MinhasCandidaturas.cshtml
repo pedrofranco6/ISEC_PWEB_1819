@@ -1,0 +1,72 @@
+﻿@model IEnumerable<PWEB_TP.Models.Candidatura>
+
+@{
+    ViewBag.Title = "Minhas Candidaturas";
+}
+
+<h2>MinhasCandidaturas</h2>
+
+<p style="margin-top:20px">
+    <button onclick="location.href='@Url.Action("Create", "Candidaturas")'" class="btn btn-sm btn-primary">Adicionar Nova Candidatura</button>
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Estagio.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ramo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Disciplinas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Importancia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Orientador_FK)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Observacoes)
+        </th>
+        <th>
+            @Html.Raw("Contacto da Empresa/Docente")
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estagio.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ramo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Disciplinas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Importancia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Orientador_FK)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Observacoes)
+        </td>
+        <td>
+            @Html.ActionLink(item.Estagio.ApplicationUser.UserName, "Profile", "Account", new { id = item.Estagio.ApplicationUser.Id }, null)
+        </td>
+    </tr>
+}
+
+</table>

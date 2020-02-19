@@ -1,0 +1,61 @@
+﻿@model IEnumerable<PWEB_TP.Models.Estagio>
+@{
+    ViewBag.Title = "Av. Propostas";
+}
+
+<h2>Aprovação de Propostas</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ramo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Enquandramento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Objetivos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CondicoesDeAcesso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Local)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ramo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Enquandramento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Objetivos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CondicoesDeAcesso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Local)
+        </td>
+
+        <td>
+            <button onclick="location.href='@Url.Action("AvaliarEstagio", "Comissao", new { id = item.EstagioId })'" class="btn btn-sm btn-primary">Avaliar Estágio</button>
+        </td>
+    </tr>
+
+}
+
+</table>
+

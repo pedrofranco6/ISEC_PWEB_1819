@@ -1,0 +1,70 @@
+﻿@model IList<PWEB_TP.Models.Candidatura>
+
+@{
+    ViewBag.Title = "CandidaturasDoEstagio";
+}
+
+<h2>Candidaturas do estágio</h2>
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <table class="table">
+
+
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model[0].Ramo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].Disciplinas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].Importancia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].ApplicationUser.Email)
+            </th>
+       
+        </tr>
+
+        @for (var i = 0; i < Model.Count; i++)
+
+        {
+            <tr>
+                <td>
+                    @Html.HiddenFor(modelItem => modelItem[i].CandidaturaId)
+                    @Html.HiddenFor(modelItem => modelItem[i].EstagioId)
+                    @Html.DisplayFor(modelItem => modelItem[i].Ramo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem[i].Disciplinas)
+                </td>
+                <td>
+                    @Html.DropDownListFor(modelItem => modelItem[i].Importancia, new SelectList(ViewBag.Ordenacao, "Value", "Text", Model[i].Importancia), new { @class = "form-control" })
+                </td>
+                <td>
+                    @Html.ActionLink(Model[i].ApplicationUser.Email, "Profile", "Account", new { id = Model[i].ApplicationUser.Id }, null)
+
+                </td>
+            </tr>
+        }
+
+    </table>
+    if (Model.Count != 0)
+    {
+        <div class="col-md-12 text-center">
+            <button value="Guardar" name="SubmitButton" formaction='@Url.Action("CandidaturasDoEstagio", "Estagios")' class="btn btn-sm btn-success">Guardar</button>
+        </div>
+    }
+    else
+    {
+        <h4 style="text-align: center">Ainda não tem candidaturas a este estágio.</h4>
+    }
+
+}
+<h3>
+    @Html.ActionLink("Voltar para trás", "Index")
+</h3>

@@ -1,0 +1,29 @@
+﻿<div>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist" style="margin-top:30px">
+        <li role="presentation" class="active"><a href="#first" aria-controls="first" role="tab" data-toggle="tab">Candidaturas Por Aprovar</a></li>
+        <li role="presentation"><a href="#second" aria-controls="second" role="tab" data-toggle="tab">Estágios Por Aprovar</a></li>
+        <li role="presentation"><a href="#third" aria-controls="third" role="tab" data-toggle="tab">Entrevistas</a></li>
+        <li role="presentation"><a href="#fourth" aria-controls="fourth" role="tab" data-toggle="tab">Estágios por Atribuir</a></li>
+        <li role="presentation"><a href="#fifth" aria-controls="fifth" role="tab" data-toggle="tab">Estágios para Defesa/Concluir</a></li>
+
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="first">
+            @Html.Action("CandidaturasPorAprovar", "Comissao")
+        </div>
+        <div role="tabpanel" class="tab-pane" id="second">
+            @Html.Action("EstagiosPorAprovar", "Comissao")
+        </div>
+        <div role="tabpanel" class="tab-pane" id="third">
+            @Html.Action("EscolherEstagioParaEnviarParaEntrevista", "Comissao")
+        </div>
+        <div role="tabpanel" class="tab-pane" id="fourth">
+            @Html.Action("EstagiosPorAtribuir", "Comissao")
+        </div>
+        <div role="tabpanel" class="tab-pane" id="fifth">
+            @Html.Action("EstagiosDefesasEConcluir", "Comissao")
+        </div>
+    </div>
+</div>

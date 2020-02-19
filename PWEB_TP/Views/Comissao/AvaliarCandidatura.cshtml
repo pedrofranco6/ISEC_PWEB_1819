@@ -1,0 +1,73 @@
+﻿@model PWEB_TP.Models.Candidatura
+
+@{
+    ViewBag.Title = "AvaliarCandidatura";
+}
+
+<h2>AvaliarCandidatura</h2>
+@using (Html.BeginForm("AvaliarCandidatura", "Comissao"))
+{
+    @Html.AntiForgeryToken()
+<div>
+    <h4>Candidatura</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Estagio.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estagio.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ramo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ramo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Disciplinas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Disciplinas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Importancia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Importancia)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.User_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUser.UserName)
+        </dd>
+    </dl>
+</div>
+
+
+    @Html.HiddenFor(model => model.Importancia)
+<div class="form-group" style="border-top:solid 1px #808080; padding-top:15px">
+    @Html.LabelFor(model => model.Observacoes, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Observacoes, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Observacoes, "", new { @class = "text-danger" })
+    </div>
+</div>
+<hr />
+<hr />
+<hr />
+<p class="text-center">
+    <button value="Aprovado" name="SubmitButton" formaction='@Url.Action("AvaliarCandidatura", "Comissao", new { id = Model.CandidaturaId})' class="btn btn-sm btn-success">Aprovar</button>
+    <button value="Rejeitado" name="SubmitButton" formaction='@Url.Action("AvaliarCandidatura", "Comissao", new { id = Model.CandidaturaId})' class="btn btn-sm btn-danger">Rejeitar</button>
+</p>
+}
+@Html.ActionLink("Ir para trás", "Index")
